@@ -15,8 +15,8 @@ I plan to implement a linked list for fast insertion / deletion of balls in the 
 
 ## Wireframes ##
 
-[Game View](game_view.png)
-[Instructions Modal](modal.png)
+* [Game View](game_view.png)
+* [Instructions Modal](modal.png)
 
 ## Implementation Timeline ##
 
