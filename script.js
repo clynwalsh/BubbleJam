@@ -94,4 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chain.last().percent > 0.034) chain.append();
 
   }, 30);
+
+  // balls crowd around the transitions between curves... some kind of mathy
+  // thinking should be able to solve this--something about moving a different
+  // percentage on each curve, based on its relative length?
 });
