@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ball = (coords) => {
     ctx.beginPath();
-    ctx.arc(coords.x, coords.y, 20, 0, Math.PI * 2);
+    ctx.arc(coords.x, coords.y, 18, 0, Math.PI * 2);
     ctx.fillStyle = '#4bc1d2';
     ctx.fill();
   };
