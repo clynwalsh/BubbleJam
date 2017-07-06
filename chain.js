@@ -2,6 +2,9 @@ class Ball {
   constructor(color) {
     this.color = color || this.randomColor();
     this.coords = {};
+    this.percent = 0;
+    this.curve = 0;
+
     this.next = null;
     this.prev = null;
   }
@@ -58,7 +61,20 @@ class Chain {
     return this.head.next;
   }
 
-  passCoords() {
-    this.eachBackward(ball => ball.coords = ball.prev.coords);
+  last() {
+    return this.tail.prev;
   }
+
+  // advanceBalls() {
+  //   this.eachForward( ball => {
+  //     if (ball.percent >= 1 && ball.i < 3) {
+  //       ball.i += 1;
+  //       ball.percent = 0;
+  //     }
+  //   });
+  // }
+
+  // passCoords() {
+  //   this.eachBackward(ball => ball.coords = ball.prev.coords);
+  // }
 }

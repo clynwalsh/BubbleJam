@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
-  const spiralPath = () => {
+  const drawSpiralPath = () => {
     ctx.beginPath();
     ctx.moveTo(-20, 200);
     ctx.bezierCurveTo(200, -20, 775, -30, 840, 200);
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     (c * 3 - c * 3 * percent) * t2 + d * t3;
   }
 
+
   const firstCurve = [
     {x: -20, y: 200},
     {x: 200, y: -20},
@@ -69,29 +70,28 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const curves = [firstCurve, secondCurve, thirdCurve, fourthCurve];
-
-  let percent = 0;
   let i = 0;
-
   const chain = new Chain();
-  for (let i = 0; i < 20; i++) {
-    chain.append();
-  }
+  chain.append();
 
-  const id = setInterval( () => {
-    if (percent >= 1 && i < 3) {
-      i += 1;
-      percent = 0;
-    } else if (percent >= 1 && i == 3) clearInterval(id);
+  const id = setInterval(() => {
+    drawSpiralPath();
 
-    curve = curves[i];
-    chain.passCoords();
-    chain.first().coords = getCoordsAtPct(percent, ...curve);
+    chain.eachForward( ball => {
 
-    spiralPath();
-    chain.eachForward(ball => drawBall(ball.coords, ball.color));
-    // .0005 is a good starting speed, should increase over time
-    percent += 0.005;
+      curve = curves[ball.curve];
+      ball.coords = getCoordsAtPct(ball.percent, ...curve);
+      drawBall(ball.coords, ball.color);
+
+      if (ball.percent >= 1 && ball.curve < 3) {
+        ball.curve += 1;
+        ball.percent = 0;
+      } else if (ball.percent >=1 && ball.curve == 3) {
+        clearInterval(id);
+      } else ball.percent += 0.005;
+    });
+
+    if (chain.last().percent > 0.034) chain.append();
+
   }, 30);
-
 });
