@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const canvas = document.getElementById("canvas");
+  canvas.addEventListener('mousemove', (e) => {
+    const angle = Math.atan2(e.clientY - 300, e.clientX - 450);
+    rotateCannon(angle);
+  });
+
   const ctx = canvas.getContext("2d");
 
   const drawSpiralPath = () => {
@@ -20,6 +25,37 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.arc(coords.x, coords.y, 18, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
+  };
+
+  const drawCannon = (x, y, color) => {
+    // draw circle
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = '#E64F62';
+    ctx.fill();
+
+    // draw pointer
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x, y - 50);
+    ctx.lineTo(x - 10, y - 30);
+    ctx.lineTo(x + 10, y - 30);
+    ctx.lineTo(x, y - 50);
+    ctx.closePath();
+    ctx.fill();
+  };
+
+  const rotateCannon = angle => {
+    ctx.save();
+    ctx.clearRect(400, 240, 110, 110);
+    ctx.translate(450, 300);
+    ctx.rotate(angle + Math.PI / 2);
+
+    drawCannon(0, 0, '#E64F62');
+
+    ctx.translate(0, 0);
+    ctx.restore();
   };
 
   // cubic bezier percent is 0-1
@@ -69,14 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
     {x: 250, y: 375}
   ];
 
+  const colors = ['#E64F62', '#FDCC73', '#728EBD', '#79C199', '#A3557D'];
+
   const curves = [firstCurve, secondCurve, thirdCurve, fourthCurve];
   let i = 0;
   const chain = new Chain();
   chain.append();
 
+  drawCannon(450, 300, '#E64F62');
+
   const id = setInterval(() => {
     drawSpiralPath();
-
     chain.eachForward( ball => {
 
       curve = curves[ball.curve];
