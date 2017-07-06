@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.stroke();
   };
 
-  const ball = (coords) => {
+  const drawBall = (coords, color) => {
     ctx.beginPath();
     ctx.arc(coords.x, coords.y, 18, 0, Math.PI * 2);
-    ctx.fillStyle = '#4bc1d2';
+    ctx.fillStyle = color;
     ctx.fill();
   };
 
@@ -72,6 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let percent = 0;
   let i = 0;
+
+  const chain = new Chain();
+  for (let i = 0; i < 20; i++) {
+    chain.append();
+  }
+
   const id = setInterval( () => {
     if (percent >= 1 && i < 3) {
       i += 1;
@@ -79,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (percent >= 1 && i == 3) clearInterval(id);
 
     curve = curves[i];
-
-    coords = getCoordsAtPct(percent, ...curve);
+    chain.passCoords();
+    chain.first().coords = getCoordsAtPct(percent, ...curve);
 
     spiralPath();
-    ball(coords);
+    chain.eachForward(ball => drawBall(ball.coords, ball.color));
     // .0005 is a good starting speed, should increase over time
     percent += 0.005;
   }, 30);

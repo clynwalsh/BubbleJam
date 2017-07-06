@@ -1,6 +1,7 @@
 class Ball {
   constructor(color) {
     this.color = color || this.randomColor();
+    this.coords = {};
     this.next = null;
     this.prev = null;
   }
@@ -35,12 +36,29 @@ class Chain {
     this.length += 1;
   }
 
-  each(callback) {
+  eachForward(callback) {
     let currentBall = this.head.next;
 
     while (currentBall !== this.tail) {
       callback(currentBall);
       currentBall = currentBall.next;
     }
+  }
+
+  eachBackward(callback) {
+    let currentBall = this.tail.prev;
+
+    while (currentBall !== this.head) {
+      callback(currentBall);
+      currentBall = currentBall.prev;
+    }
+  }
+
+  first() {
+    return this.head.next;
+  }
+
+  passCoords() {
+    this.eachBackward(ball => ball.coords = ball.prev.coords);
   }
 }
