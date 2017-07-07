@@ -15,7 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
       (e.clientY - canvas.offsetTop) - 300,
       (e.clientX - canvas.offsetLeft) - 450
     );
-    console.log((angle * 180 / Math.PI) + 90);
+
+    const flyingBall = onDeckBall;
+    console.log(flyingBall);
+    launchBall(angle, flyingBall);
+
+    onDeckBall = new Ball();
+    onDeckBall.coords = {x: 450, y: 300};
   });
 
   const ctx = canvas.getContext("2d");
@@ -39,12 +45,35 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fill();
   };
 
+
+  const launchBall = (angle, ball) => {
+
+    const id = setInterval(() => {
+      let coords = ball.coords;
+      drawBall(coords, "white");
+      const offsetX = Math.cos(angle) * 10;
+      const offsetY = Math.sin(angle) * 10;
+
+      coords = {
+        x: ball.coords.x + offsetX,
+        y: ball.coords.y + offsetY
+      };
+      ball.coords = coords;
+      drawBall(coords, ball.color);
+      console.log({x: coords.x, y: coords.y});
+
+      if (coords.x > 900 || coords.x < 0 || coords.y > 600 || coords.y < 0) {
+        clearInterval(id);
+      }
+    }, 30);
+  };
+
   const drawCannon = (x, y, color) => {
     // draw circle
     ctx.beginPath();
     ctx.arc(x, y, 20, 0, Math.PI * 2);
     ctx.closePath();
-    ctx.fillStyle = '#E64F62';
+    ctx.fillStyle = onDeckBall.color;
     ctx.fill();
 
     // draw pointer
@@ -117,7 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     {x: 250, y: 375}
   ];
 
-  const colors = ['#E64F62', '#FDCC73', '#728EBD', '#79C199', '#A3557D'];
+  let onDeckBall = new Ball();
+  onDeckBall.coords = {x: 450, y: 300};
 
   const curves = [firstCurve, secondCurve, thirdCurve, fourthCurve];
   let i = 0;
