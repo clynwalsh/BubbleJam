@@ -2,8 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const canvas = document.getElementById("canvas");
   canvas.addEventListener('mousemove', (e) => {
-    const angle = Math.atan2(e.clientY - 300, e.clientX - 450);
-    rotateCannon(angle);
+    const angle = Math.atan2(
+      (e.clientY - canvas.offsetTop) - 300,
+      (e.clientX - canvas.offsetLeft) - 450
+    );
+
+    rotateCannon(angle + Math.PI / 2);
+  });
+
+  canvas.addEventListener('click', (e) => {
+    const angle = Math.atan2(
+      (e.clientY - canvas.offsetTop) - 300,
+      (e.clientX - canvas.offsetLeft) - 450
+    );
+    console.log((angle * 180 / Math.PI) + 90);
   });
 
   const ctx = canvas.getContext("2d");
@@ -50,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.save();
     ctx.clearRect(400, 240, 110, 110);
     ctx.translate(450, 300);
-    ctx.rotate(angle + Math.PI / 2);
+    ctx.rotate(angle);
 
     drawCannon(0, 0, '#E64F62');
 
