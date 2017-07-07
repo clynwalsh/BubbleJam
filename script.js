@@ -126,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ball.curve += 1;
         ball.percent = 0;
       } else if (ball.percent >=1 && ball.curve == 3) {
-        clearInterval(id);
+        // clearInterval(id);
+        // leads to infinitely appending/removing chain, just keeps going
+        ball.remove();
       } else ball.percent += 0.005;
     });
 
