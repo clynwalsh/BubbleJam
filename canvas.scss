@@ -31,15 +31,18 @@ canvas {
 }
 
 h1 {
+  padding-top: 20px;
   text-align: center;
-  font-size: 55px;
+  font-size: 70px;
   color: #e64f62;
   margin: 0;
+  font-family: 'Cabin Sketch', sans-serif;
 }
 
 p {
   text-align: center;
   color: black;
+  font-size: 17px;
 }
 
 a {
@@ -48,16 +51,12 @@ a {
 }
 
 div.instructions {
-  margin: 5%;
+  margin: 0 5%;
 }
-
-// div.instructions p {
-//   color: black;
-// }
 
 canvas#score {
   margin: 5%;
-  border: 2px solid black;
-  border-radius: 5px;
+  // border: 2px solid black;
+  // border-radius: 5px;
   width: 90%;
 }
