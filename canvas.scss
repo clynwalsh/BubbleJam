@@ -13,11 +13,14 @@ div.game {
   justify-content: space-around;
 }
 
-section.sidebar {
+section#sidebar {
   border: 2px solid black;
   border-radius: 5px;
   flex: 1;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 canvas {
@@ -36,21 +39,21 @@ h1 {
 
 p {
   text-align: center;
-  color: #79c199;
+  color: black;
 }
 
 a {
   text-decoration: none;
-  color: #728ebd;
+  color: #79c199;
 }
 
 div.instructions {
   margin: 5%;
 }
 
-div.instructions p {
-  color: black;
-}
+// div.instructions p {
+//   color: black;
+// }
 
 canvas#score {
   margin: 5%;
