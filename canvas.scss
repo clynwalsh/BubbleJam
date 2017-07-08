@@ -10,13 +10,13 @@ body {
 div.game {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 section#sidebar {
   border: 2px solid black;
   border-radius: 5px;
-  flex: 1;
+  width: 350px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -51,12 +51,11 @@ a {
 }
 
 div.instructions {
-  margin: 0 5%;
+  margin: 2% 5%;
+  // margin-top: 10px;
 }
 
 canvas#score {
-  margin: 5%;
-  // border: 2px solid black;
-  // border-radius: 5px;
+  margin: 2% 5%;
   width: 90%;
 }
