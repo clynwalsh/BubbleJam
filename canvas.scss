@@ -1,9 +1,45 @@
 body {
-  margin: 5% auto;
+  margin: 0 10px auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Gloria Hallelujah', sans-serif;
+  height: 100vh;
+}
+
+div.game {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+section.sidebar {
+  border: 2px solid black;
+  border-radius: 3px;
+  flex: 1;
+  margin-left: 20px;
 }
 
 canvas {
   border: 2px solid black;
+  border-radius: 3px;
+  background: white;
+  width: 900px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 55px;
+  color: #e64f62;
+  margin: 0;
+}
+
+p {
+  text-align: center;
+  color: #79c199;
+}
+
+a {
+  text-decoration: none;
+  color: #728ebd;
 }
