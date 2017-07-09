@@ -3,6 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   font-family: 'Gloria Hallelujah', sans-serif;
   height: 100vh;
 }
