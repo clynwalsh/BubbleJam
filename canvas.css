@@ -60,7 +60,7 @@ canvas#score {
   width: 90%;
 }
 
-.start-modal {
+.modal {
   position: fixed;
 }
 
@@ -91,4 +91,8 @@ strong {
 
 .hidden {
   display: none;
+}
+
+.pause {
+  text-align: center;
 }
