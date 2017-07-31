@@ -113,6 +113,7 @@ button {
   margin: 0 10px;
   font-family: 'Annie Use Your Telescope', sans-serif;
   font-size: 20px;
+  font-weight: bold;
   text-transform: uppercase;
   color: white;
   background: #A3557D;
