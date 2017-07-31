@@ -121,6 +121,10 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background: rgba(163, 85, 125, 0.8);
+}
+
 .buttons {
   display: flex;
   justify-content: center;
