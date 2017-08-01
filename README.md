@@ -50,3 +50,9 @@ class Bubble {
 ```
 
 The doubly-linked list also reduces the time complexity of collision checking.  Each node in the list detects collision with only the node directly ahead of it--to which it holds a `prev` reference.  Thus, collision detection in the bubble chain occurs in O(n) time, a significant improvement over the O(n<sup>2</sup>) required for each node to detect collision with any other node.
+
+## Future Directions ##
+
+Going forward, I look forward to implementing more sophisticated bubble behavior, including chain reactions when groups of three are formed by the removal of an intervening group.
+
+I also plan to introduce other modes of play in addition to the current endless-play mode, including a multi-level adventure mode and timed challenge mode.
